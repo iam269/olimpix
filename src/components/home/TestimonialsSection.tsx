@@ -9,7 +9,7 @@ const testimonials = [
   },
   {
     name: "Maria P.",
-    role: "Calificare la ONF, 2024",
+    role: "Calificare la ONF, 2025",
     content: "Îmi place că pot vedea progresul meu. Lectiile sunt clare și exercițiile sunt gradate perfect.",
     avatar: "M",
   },

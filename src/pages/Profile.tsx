@@ -7,7 +7,7 @@ const userProfile = {
   name: "Elev Olimpic",
   email: "elev@exemplu.com",
   avatar: "E",
-  joinedDate: "Ianuarie 2024",
+  joinedDate: "Ianuarie 2025",
   level: "Intermediar",
   totalProgress: 14,
   favoriteSubjects: ["Informatică", "Fizică"],
