@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-card border-t border-border">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4">
@@ -15,7 +15,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-muted-foreground text-sm max-w-md mb-6">
-              Platforma de învățare pentru elevii care visează la olimpiadele de informatică, fizică și chimie. 
+              Platforma de învățare pentru elevii care visează la olimpiadele de informatică, fizică și chimie.
               Pregătește-te să cucerești competițiile!
             </p>
             <div className="flex gap-4">
@@ -52,6 +52,28 @@ const Footer = () => {
                 <Link to="/profil" className="text-muted-foreground hover:text-primary text-sm transition-colors">
                   Profilul meu
                 </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Despre */}
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">Despre</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/despre" className="text-muted-foreground hover:text-primary text-sm transition-colors">
+                  Despre noi
+                </Link>
+              </li>
+              <li>
+                <a href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
+                  Echipa
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
+                  Parteneri
+                </a>
               </li>
             </ul>
           </div>
