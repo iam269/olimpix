@@ -11,6 +11,7 @@ import SubjectPage from "./pages/SubjectPage";
 import LessonPage from "./pages/LessonPage";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
+import Creators from "./pages/Creators";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/materii/:subjectId/:levelId/lectie/:lessonId" element={<LessonPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profil" element={<Profile />} />
+          <Route path="/creatori" element={<Creators />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

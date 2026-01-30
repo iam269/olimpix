@@ -66,9 +66,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
+                <Link to="/creatori" className="text-muted-foreground hover:text-primary text-sm transition-colors">
                   Echipa
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
