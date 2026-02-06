@@ -1,73 +1,11 @@
-import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles, Trophy, Target } from "lucide-react";
 
-// Counter animation hook
-const useCounter = (endValue: number, duration: number = 2000, delay: number = 0) => {
-  const [count, setCount] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const elementRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Small initial delay before showing the number
-    const visibilityTimer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated && isVisible) {
-            setHasAnimated(true);
-            const startTime = performance.now() + delay;
-            const animate = (currentTime: number) => {
-              const elapsed = currentTime - startTime;
-              const progress = Math.min(elapsed / duration, 1);
-              // Easing function for smooth animation
-              const easeOut = 1 - Math.pow(1 - progress, 3);
-              const currentCount = Math.floor(easeOut * endValue);
-              setCount(currentCount);
-              if (progress < 1) {
-                requestAnimationFrame(animate);
-              }
-            };
-            requestAnimationFrame(animate);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
-    }
-
-    return () => {
-      clearTimeout(visibilityTimer);
-      observer.disconnect();
-    };
-  }, [endValue, duration, delay, hasAnimated, isVisible]);
-
-  return { count, elementRef, isVisible };
-};
-
-const StatItem = ({ value: endValue, label, duration = 1500, delay = 0, suffix = "" }: { value: number; label: string; duration?: number; delay?: number; suffix?: string }) => {
-  const { count, elementRef, isVisible } = useCounter(endValue, duration, delay);
-
-  if (!isVisible) {
-    return (
-      <div className="text-center" ref={elementRef}>
-        <div className="text-3xl md:text-4xl font-bold gradient-text mb-1 opacity-0">0</div>
-        <div className="text-sm text-muted-foreground">{label}</div>
-      </div>
-    );
-  }
-
+const StatItem = ({ value, label, suffix = "" }: { value: number; label: string; suffix?: string }) => {
   return (
-    <div className="text-center" ref={elementRef}>
-      <div className="text-3xl md:text-4xl font-bold gradient-text mb-1 animate-fade-in">
-        {count}{suffix}
+    <div className="text-center">
+      <div className="text-3xl md:text-4xl font-bold gradient-text mb-1">
+        {value}{suffix}
       </div>
       <div className="text-sm text-muted-foreground">{label}</div>
     </div>
@@ -130,10 +68,10 @@ const HeroSection = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 mt-16 max-w-xl mx-auto animate-fade-in" style={{ animationDelay: '0.4s' }}>
-            <StatItem value={500} label="Probleme" duration={2000} delay={400} suffix="+" />
-            <StatItem value={50} label="Lecții" duration={2000} delay={600} suffix="+" />
-            <StatItem value={5} label="Nivele" duration={1500} delay={800} />
+          <div className="grid grid-cols-3 gap-8 mt-16 max-w-xl mx-auto">
+            <StatItem value={500} label="Probleme" suffix="+" />
+            <StatItem value={50} label="Lecții" suffix="+" />
+            <StatItem value={5} label="Nivele" />
           </div>
         </div>
       </div>
