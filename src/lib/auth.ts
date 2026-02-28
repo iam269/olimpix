@@ -17,7 +17,7 @@ export const login = async (email: string, password: string) => {
 
 /**
  * Signs up a new user with email, password, name, and role.
- * Creates an auth user and inserts profile data into the users table.
+ * Uses Supabase's trigger to automatically create the user profile.
  * @param email - The user's email address.
  * @param password - The user's password.
  * @param nume - The user's name.
@@ -28,30 +28,16 @@ export const signup = async (email: string, password: string, nume: string, rol:
   const { data: authData, error: authError } = await supabase.auth.signUp({
     email,
     password,
+    options: {
+      data: {
+        nume,
+        rol,
+      },
+    },
   });
 
   if (authError) {
     return { data: null, error: authError };
-  }
-
-  if (authData.user) {
-    // Insert user profile into users table
-    const { data: userData, error: userError } = await supabase
-      .from('users')
-      .insert({
-        id: authData.user.id,
-        nume,
-        email,
-        rol,
-      })
-      .select()
-      .single();
-
-    if (userError) {
-      return { data: null, error: userError };
-    }
-
-    return { data: { user: authData.user, profile: userData as User }, error: null };
   }
 
   return { data: authData, error: null };

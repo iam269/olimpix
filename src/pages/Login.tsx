@@ -1,18 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { BookOpen, Mail, Lock, ArrowRight } from "lucide-react";
+import { BookOpen, Mail, Lock, ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { login } from "@/lib/auth";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/profil";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement login logic with Supabase
-    console.log("Login:", { email, password });
+    setError(null);
+    setLoading(true);
+
+    try {
+      const { data, error: authError } = await login(email, password);
+      
+      if (authError) {
+        setError(authError.message);
+      } else if (data?.user) {
+        navigate(from, { replace: true });
+      }
+    } catch (err) {
+      setError("A apărut o eroare. Te rugăm să încerci din nou.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -36,6 +56,11 @@ const Login = () => {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
+            {error && (
+              <div className="p-3 text-sm text-red-500 bg-red-50 rounded-md">
+                {error}
+              </div>
+            )}
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <div className="relative">
@@ -71,9 +96,22 @@ const Login = () => {
               </div>
             </div>
 
-            <Button type="submit" className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
-              Autentificare
-              <ArrowRight className="w-5 h-5 ml-2" />
+            <Button 
+              type="submit" 
+              className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                  Se încarcă...
+                </>
+              ) : (
+                <>
+                  Autentificare
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </>
+              )}
             </Button>
           </form>
 

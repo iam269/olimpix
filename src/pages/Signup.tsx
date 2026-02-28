@@ -1,19 +1,50 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { BookOpen, Mail, Lock, User, ArrowRight } from "lucide-react";
+import { BookOpen, Mail, Lock, User, ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { signup } from "@/lib/auth";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState<"elev" | "profesor">("elev");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement signup logic with Supabase
-    console.log("Signup:", { name, email, password });
+    setError(null);
+    setLoading(true);
+
+    try {
+      const { data, error: authError } = await signup(email, password, name, role);
+      
+      if (authError) {
+        setError(authError.message);
+      } else if (data?.user) {
+        // Check if email confirmation is required
+        if (data.confirmation_sent_at) {
+          // Email confirmation required - show success message
+          setSuccessMessage("Contul a fost creat! Te rugăm să verifici email-ul pentru a confirma contul tău.");
+          setError(null);
+        } else {
+          // No confirmation needed - redirect to dashboard or previous page
+          const redirectPath = location.state?.from?.pathname || "/profil";
+          navigate(redirectPath);
+        }
+      }
+    } catch (err) {
+      setError("A apărut o eroare. Te rugăm să încerci din nou.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -98,18 +129,61 @@ const Signup = () => {
               </div>
             </div>
 
-            <Button type="submit" className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
-              Creează cont
-              <ArrowRight className="w-5 h-5 ml-2" />
+            <div className="space-y-2">
+              <Label>Sunt</Label>
+              <RadioGroup 
+                value={role} 
+                onValueChange={(value) => setRole(value as "elev" | "profesor")}
+                className="flex gap-4"
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="elev" id="elev" />
+                  <Label htmlFor="elev" className="cursor-pointer">Elev</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="profesor" id="profesor" />
+                  <Label htmlFor="profesor" className="cursor-pointer">Profesor</Label>
+                </div>
+              </RadioGroup>
+            </div>
+
+            {error && (
+              <div className="p-3 text-sm text-red-500 bg-red-50 rounded-md">
+                {error}
+              </div>
+            )}
+
+            {successMessage && (
+              <div className="p-3 text-sm text-green-600 bg-green-50 rounded-md">
+                {successMessage}
+              </div>
+            )}
+
+            <Button 
+              type="submit" 
+              className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                  Se încarcă...
+                </>
+              ) : (
+                <>
+                  Creează cont
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </>
+              )}
             </Button>
           </form>
 
-          {/* Terms */}
+          {/* Terms - TODO: Add actual terms and privacy policy pages */}
           <p className="mt-6 text-xs text-muted-foreground text-center">
             Prin crearea contului, ești de acord cu{" "}
-            <a href="#" className="text-primary hover:underline">Termenii și condițiile</a>
+            <span className="text-primary cursor-not-allowed">Termenii și condițiile</span>
             {" "}și{" "}
-            <a href="#" className="text-primary hover:underline">Politica de confidențialitate</a>
+            <span className="text-primary cursor-not-allowed">Politica de confidențialitate</span>
           </p>
 
           {/* Divider */}
@@ -119,8 +193,8 @@ const Signup = () => {
             <div className="flex-1 h-px bg-border" />
           </div>
 
-          {/* Google Signup */}
-          <Button variant="outline" className="w-full h-12 border-border bg-transparent hover:bg-secondary/50">
+          {/* Google Signup - TODO: Requires OAuth provider configuration in Supabase */}
+          {/* <Button variant="outline" className="w-full h-12 border-border bg-transparent hover:bg-secondary/50">
             <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
               <path
                 fill="currentColor"
@@ -140,7 +214,7 @@ const Signup = () => {
               />
             </svg>
             Continuă cu Google
-          </Button>
+          </Button> */}
 
           {/* Login Link */}
           <p className="mt-8 text-center text-muted-foreground">

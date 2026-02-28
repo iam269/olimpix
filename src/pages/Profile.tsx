@@ -1,31 +1,46 @@
 import Layout from "@/components/layout/Layout";
-import { User, Mail, BookOpen, Trophy, Target, Edit2, Code, Atom, FlaskConical } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { User, Mail, BookOpen, Trophy, Target, Edit2, Code, Atom, FlaskConical, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-const userProfile = {
-  name: "Elev Olimpic",
-  email: "elev@exemplu.com",
-  avatar: "E",
-  joinedDate: "Ianuarie 2025",
-  level: "Intermediar",
-  totalProgress: 14,
-  favoriteSubjects: ["Informatică", "Fizică"],
-  badges: [
-    { name: "Prima lecție", icon: BookOpen },
-    { name: "3 zile la rând", icon: Target },
-    { name: "Quiz perfect", icon: Trophy },
-  ],
-};
-
-const subjectIcons: Record<string, typeof Code> = {
-  "Informatică": Code,
-  "Fizică": Atom,
-  "Chimie": FlaskConical,
-};
-
 const Profile = () => {
+  const { user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
+
+  // Get user data from Supabase auth metadata
+  const userName = user?.user_metadata?.nume || "Utilizator";
+  const userEmail = user?.email || "";
+  const userRole = user?.user_metadata?.rol || "elev";
+  const avatarLetter = userName.charAt(0).toUpperCase();
+
+  // Format role for display
+  const roleDisplay = userRole === "profesor" ? "Profesor" : "Elev";
+
+  // Mock data for progress/badges (still using some mock data for now)
+  const userProfile = {
+    name: userName,
+    email: userEmail,
+    role: roleDisplay,
+    avatar: avatarLetter,
+    joinedDate: user?.created_at 
+      ? new Date(user.created_at).toLocaleDateString("ro-RO", { month: "long", year: "numeric" })
+      : "Ianuarie 2025",
+    level: "Intermediar",
+    totalProgress: 14,
+    favoriteSubjects: ["Informatică", "Fizică"],
+    badges: [
+      { name: "Prima lecție", icon: BookOpen },
+      { name: "3 zile la rând", icon: Target },
+      { name: "Quiz perfect", icon: Trophy },
+    ],
+  };
+
+  const subjectIcons: Record<string, typeof Code> = {
+    "Informatică": Code,
+    "Fizică": Atom,
+    "Chimie": FlaskConical,
+  };
 
   return (
     <Layout>
@@ -50,6 +65,10 @@ const Profile = () => {
                   <h1 className="text-2xl font-bold mb-1">{userProfile.name}</h1>
                   <p className="text-muted-foreground mb-4">{userProfile.email}</p>
                   <div className="flex flex-wrap justify-center md:justify-start gap-4 text-sm">
+                    <div className="flex items-center gap-2">
+                      <GraduationCap className="w-4 h-4 text-primary" />
+                      <span>Rol: <span className="text-foreground font-medium">{userProfile.role}</span></span>
+                    </div>
                     <div className="flex items-center gap-2">
                       <Trophy className="w-4 h-4 text-primary" />
                       <span>Nivel: <span className="text-foreground font-medium">{userProfile.level}</span></span>
@@ -161,8 +180,16 @@ const Profile = () => {
               <h3 className="font-semibold mb-4">Informații cont</h3>
               <div className="space-y-3 text-sm">
                 <div className="flex items-center justify-between">
+                  <span className="text-muted-foreground">Nume</span>
+                  <span>{userProfile.name}</span>
+                </div>
+                <div className="flex items-center justify-between">
                   <span className="text-muted-foreground">Email</span>
                   <span>{userProfile.email}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-muted-foreground">Rol</span>
+                  <span>{userProfile.role}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-muted-foreground">Membru din</span>
