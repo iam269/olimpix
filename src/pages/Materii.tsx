@@ -29,7 +29,7 @@ const subjects = [
     iconClass: "icon-fizica",
     color: "hsl(280 80% 60%)",
     levels: [
-      { name: "Începător", lessons: 4, progress: 0 },
+      { name: "Începător", lessons: 5, progress: 0 },
       { name: "Intermediar", lessons: 5, progress: 0 },
       { name: "Avansat", lessons: 4, progress: 0 },
       { name: "Olimpiadă Județeană", lessons: 3, progress: 0 },
@@ -46,7 +46,7 @@ const subjects = [
     iconClass: "icon-chimie",
     color: "hsl(142 76% 45%)",
     levels: [
-      { name: "Începător", lessons: 4, progress: 0 },
+      { name: "Începător", lessons: 5, progress: 0 },
       { name: "Intermediar", lessons: 4, progress: 0 },
       { name: "Avansat", lessons: 3, progress: 0 },
       { name: "Olimpiadă Județeană", lessons: 2, progress: 0 },

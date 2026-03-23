@@ -4,7 +4,7 @@ import { Github, Linkedin, User } from "lucide-react";
 const creators = [
   {
     name: "Ioniță Aurel Mihai",
-    role: "Mentor Informatică și Fondator",
+    role: "Full Stack Developer și Mentor Informatică",
     description: "Pasionat de algoritmi și dezvoltare web. Am creat platforma de la zero si cursul de infromatică pentru olimpiade.",
     github: "https://github.com/iam269",
     linkedin: "https://www.linkedin.com/in/ionita-aurel-mihai-20648536a/",
@@ -12,11 +12,11 @@ const creators = [
   },
   {
     name: "Ciocoiu Călin Lucian",
-    role: "Mentor Fizică și Chimie si Fondator",
+    role: "Mentor Fizică și Chimie",
     description: "Pasionat de fizică și chimie. Am creat cursurile și problemele pentru olimpiade.",
     github: "https://github.com",
     linkedin: "https://linkedin.com",
-    image: "public/creator2.jpg"
+    image: "/creator2.jpg",
   }
 ];
 
