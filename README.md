@@ -1,126 +1,168 @@
-# OlimpiX - Platformă de Pregătire pentru Olimpiade
+# OlimpiX - Educational Platform
 
-OlimpiX este o platformă web completă de pregătire pentru olimpiadele de informatică, fizică și chimie. Platforma oferă lecții structurate, probleme reale și progres vizibil pentru elevii care doresc să exceleze la competițiile școlare.
+<div align="center">
 
-## 🚀 Tehnologii Utilizate
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.3-orange.svg)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-5.4-yellow.svg)](https://vitejs.dev/)
 
-- **Frontend**: React 18 + TypeScript
-- **Build Tool**: Vite
-- **Stilizare**: Tailwind CSS + shadcn/ui
-- **Autentificare**: Supabase
-- **State Management**: TanStack React Query
+</div>
+
+OlimpiX is a modern educational platform designed to help students learn various subjects through interactive lessons, quizzes, and progress tracking. Built with React, TypeScript, and Supabase.
+
+## ✨ Features
+
+- **User Authentication** - Secure sign up and login with Supabase auth
+- **Subject Navigation** - Browse and explore different subjects
+- **Interactive Lessons** - Detailed lesson content with progression
+- **Quiz System** - Test knowledge with built-in quizzes
+- **Progress Tracking** - Track learning progress and achievements
+- **User Dashboard** - Personalized dashboard with stats
+- **Premium Access** - Unlock premium content and features
+- **Dark/Light Theme** - Toggle between theme modes
+- **Responsive Design** - Works on all devices
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React 18, TypeScript, Vite
+- **Styling**: Tailwind CSS, shadcn/ui
+- **Backend**: Supabase (Auth, Database)
 - **Routing**: React Router DOM
-- **Formulare**: React Hook Form + Zod
-- **Testare**: Vitest
+- **State Management**: React Query, Context API
+- **Form Handling**: React Hook Form, Zod
+- **Icons**: Lucide React
+- **Charts**: Recharts
 
-## 📁 Structura Proiectului
+## 📋 Prerequisites
 
-```
-OlimpiX/
-├── public/                 # Fișiere statice
-├── src/
-│   ├── components/         # Componente React
-│   │   ├── home/          # Componente pentru pagina principală
-│   │   ├── layout/        # Componente de layout (Header, Footer)
-│   │   └── ui/            # Componente UI (shadcn/ui)
-│   ├── hooks/             # Hook-uri personalizate
-│   ├── lib/               # Funcții utilitare și configurări
-│   ├── pages/             # Pagini ale aplicației
-│   ├── App.tsx            # Componenta principală
-│   ├── main.tsx           # Punct de intrare
-│   └── index.css          # Stiluri globale
-├── index.html
-├── package.json
-├── tailwind.config.ts
-├── tsconfig.json
-└── vite.config.ts
+- Node.js 18+ 
+- npm or yarn
+- Supabase account (for backend)
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/OlimpiX.git
+cd OlimpiX
 ```
 
-## 🛠️ Instalare și Rulare
+### 2. Install Dependencies
 
-### Prerequisites
-- Node.js 18+
-- npm sau yarn
-
-### Instalare
 ```bash
 npm install
 ```
 
-### Rulare în Development
+### 3. Environment Setup
+
+Copy the example environment file and configure your credentials:
+
 ```bash
-npm run dev
+cp .env.example .env
 ```
 
-### Build pentru Producție
-```bash
-npm run build
-```
+Edit `.env` with your Supabase credentials:
 
-### Rulare Teste
-```bash
-npm test           # Rulează testele o singură dată
-npm run test:watch # Rulează testele în mod watch
-```
-
-## 📚 Pagini și Funcționalități
-
-| Pagina | Ruta | Descriere |
-|--------|------|-----------|
-| Acasă | `/` | Pagina principală cu statistici și CTA |
-| Autentificare | `/login` | Pagina de login |
-| Înregistrare | `/signup` | Pagina de înregistrare |
-| Materii | `/materii` | Lista materiilor disponibile |
-| Subiect | `/materii/:subjectId` | Pagina unui subiect specific |
-| Lecție | `/materii/:subjectId/:levelId/lectie/:lessonId` | Pagina unei lecții |
-| Dashboard | `/dashboard` | Dashboard-ul utilizatorului |
-| Profil | `/profil` | Profilul utilizatorului |
-| Creatori | `/creatori` | Informații despre creatorii platformei |
-
-## 🎨 Design și UX
-
-- **Temă**: Suportă mod întunecat/light (next-themes)
-- **Animări**: Animații smooth cu tailwindcss-animate
-- **Componente UI**: shadcn/ui pentru o experiență consistentă
-- **Responsive**: Design adaptat pentru toate dispozitivele
-
-## 🔐 Autentificare
-
-Platforma utilizează Supabase pentru autentificare. Variabilele de mediu necesare:
-```
+```env
 VITE_SUPABASE_URL=your_supabase_url
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
-## 🧪 Testare
+### 4. Database Setup
 
-Proiectul utilizează Vitest pentru testare. Testele se află în directorul `src/test/`.
+Run the SQL setup script in your Supabase dashboard:
 
 ```bash
-npm test
+# The setup script is in supabase-setup.sql
 ```
 
-## 📦 Dependențe Principale
+### 5. Run Development Server
 
-- **@radix-ui/react-*** - Componente UI accesibile
-- **lucide-react** - Iconițe
-- **recharts** - Grafice și diagrame
-- **sonner** - Notificări toast
-- **clsx & tailwind-merge** - Utilitare pentru clase CSS
-
-## 🚀 Deployment
-
-Pentru deploy, utilizați:
 ```bash
-npm run build
+npm run dev
 ```
 
-Artefactele build vor fi în directorul `dist/`.
+The app will be available at `http://localhost:5173`
 
-## 📝 Licență
+## 📁 Project Structure
 
-Acest proiect este dezvoltat pentru scopuri educaționale.
+```
+OlimpiX/
+├── public/                 # Static assets
+│   └── icon.png           # App icon
+├── src/
+│   ├── components/        # React components
+│   │   ├── home/         # Home page components
+│   │   ├── layout/       # Layout components (Header, Footer)
+│   │   └── ui/           # shadcn/ui components
+│   ├── contexts/         # React contexts (Auth)
+│   ├── hooks/            # Custom hooks
+│   ├── lib/              # Utilities and libraries
+│   ├── pages/            # Page components
+│   ├── App.tsx           # Main application component
+│   ├── main.tsx          # Application entry point
+│   └── index.css         # Global styles
+├── .env.example          # Environment variables template
+├── package.json          # Dependencies
+├── tailwind.config.ts    # Tailwind configuration
+├── tsconfig.json         # TypeScript configuration
+├── vite.config.ts        # Vite configuration
+└── README.md             # Project documentation
+```
 
-## 👨‍💻 Autori
+## 🎨 Available Scripts
 
-Creat pentru a ajuta elevii să se pregătească pentru olimpiadele școlare.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run lint` | Run ESLint |
+| `npm run preview` | Preview production build |
+| `npm run test` | Run tests |
+| `npm run test:watch` | Run tests in watch mode |
+
+## 🔐 Authentication
+
+The project uses Supabase Auth with the following features:
+- Email/password registration
+- Session management
+- Protected routes
+- User profile management
+
+## 🧪 Testing
+
+```bash
+# Run all tests
+npm run test
+
+# Run tests in watch mode
+npm run test:watch
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details.
+
+## 📜 Code of Conduct
+
+Please read our [Code of Conduct](CODE_OF_CONDUCT.md) to keep our community approachable and respectable.
+
+## 🔒 Security
+
+For security vulnerabilities, please read our [Security Policy](SECURITY.md).
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [shadcn/ui](https://ui.shadcn.com/) - UI components
+- [Supabase](https://supabase.com/) - Backend services
+- [Vite](https://vitejs.dev/) - Build tool
+
+---
+
+<p align="center">Made with ❤️ for education</p>
