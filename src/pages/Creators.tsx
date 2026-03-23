@@ -11,7 +11,7 @@ const creators = [
     image: "/creator.jpg",
   },
   {
-    name: "Maria Popescu",
+    name: "Ciocoiu Călin Lucian",
     role: "Mentor Fizică și Chimie si Fondator",
     description: "Pasionat de fizică și chimie. Am creat cursurile și problemele pentru olimpiade.",
     github: "https://github.com",
