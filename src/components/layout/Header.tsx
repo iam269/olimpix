@@ -12,6 +12,7 @@ const Header = () => {
     { href: "/", label: "Acasă" },
     { href: "/materii", label: "Materii" },
     { href: "/dashboard", label: "Dashboard" },
+    { href: "/premium", label: "Premium" },
   ];
 
   const isActive = (path: string) => location.pathname === path;

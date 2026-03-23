@@ -19,16 +19,16 @@ const Footer = () => {
               Pregătește-te să cucerești competițiile!
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://twitter.com/olimpix" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://github.com/iam269/olimpix" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                 <Github className="w-5 h-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://linkedin.com/in/olimpix" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="mailto:contact@olimpix.ro" className="text-muted-foreground hover:text-primary transition-colors">
                 <Mail className="w-5 h-5" />
               </a>
             </div>
@@ -46,6 +46,11 @@ const Footer = () => {
               <li>
                 <Link to="/dashboard" className="text-muted-foreground hover:text-primary text-sm transition-colors">
                   Dashboard
+                </Link>
+              </li>
+              <li>
+                <Link to="/premium" className="text-muted-foreground hover:text-primary text-sm transition-colors">
+                  Premium
                 </Link>
               </li>
               <li>
@@ -83,24 +88,24 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">Suport</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
+                <Link to="/ajutor" className="text-muted-foreground hover:text-primary text-sm transition-colors">
                   Ajutor
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
+                <Link to="/contact" className="text-muted-foreground hover:text-primary text-sm transition-colors">
                   Contact
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
+                <Link to="/termeni" className="text-muted-foreground hover:text-primary text-sm transition-colors">
                   Termeni și condiții
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
+                <Link to="/confidentialitate" className="text-muted-foreground hover:text-primary text-sm transition-colors">
                   Politica de confidențialitate
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

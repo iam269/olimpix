@@ -15,6 +15,11 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Creators from "./pages/Creators";
 import About from "./pages/About";
+import Ajutor from "./pages/Ajutor";
+import Contact from "./pages/Contact";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
+import Premium from "./pages/Premium";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -37,6 +42,11 @@ const App = () => (
             <Route path="/profil" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/creatori" element={<Creators />} />
             <Route path="/despre" element={<About />} />
+            <Route path="/ajutor" element={<Ajutor />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/termeni" element={<Terms />} />
+            <Route path="/confidentialitate" element={<Privacy />} />
+            <Route path="/premium" element={<Premium />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
