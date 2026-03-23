@@ -4,7 +4,7 @@ import { Github, Linkedin, User } from "lucide-react";
 const creators = [
   {
     name: "Ioniță Aurel Mihai",
-    role: "Full Stack Developer și Mentor Informatică",
+    role: "Web Developer și Mentor Informatică",
     description: "Pasionat de algoritmi și dezvoltare web. Am creat platforma de la zero si cursul de infromatică pentru olimpiade.",
     github: "https://github.com/iam269",
     linkedin: "https://www.linkedin.com/in/ionita-aurel-mihai-20648536a/",
