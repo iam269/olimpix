@@ -14,6 +14,7 @@ import LessonPage from "./pages/LessonPage";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Creators from "./pages/Creators";
+import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/profil" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/creatori" element={<Creators />} />
+            <Route path="/despre" element={<About />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

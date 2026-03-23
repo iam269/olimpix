@@ -1,38 +1,22 @@
 import Layout from "@/components/layout/Layout";
-import { Github, Linkedin, Mail, User } from "lucide-react";
+import { Github, Linkedin, User } from "lucide-react";
 
 const creators = [
   {
-    name: "Alexandru Popescu",
-    role: "Full Stack Developer",
-    description: "Pasionat de algoritmi și dezvoltare web. A creat platforma de la zero.",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    email: "alex@olimpix.ro"
+    name: "Ioniță Aurel Mihai",
+    role: "Mentor Informatică și Fondator",
+    description: "Pasionat de algoritmi și dezvoltare web. Am creat platforma de la zero si cursul de infromatică pentru olimpiade.",
+    github: "https://github.com/iam269",
+    linkedin: "https://www.linkedin.com/in/ionita-aurel-mihai-20648536a/",
+    image: "/creator.jpg",
   },
   {
-    name: "Maria Ionescu",
-    role: "UI/UX Designer",
-    description: "Design modern și intuitiv pentru o experiență de învățare excelentă.",
+    name: "Maria Popescu",
+    role: "Mentor Fizică și Chimie si Fondator",
+    description: "Pasionat de fizică și chimie. Am creat cursurile și problemele pentru olimpiade.",
     github: "https://github.com",
     linkedin: "https://linkedin.com",
-    email: "maria@olimpix.ro"
-  },
-  {
-    name: "Andrei Dumitrescu",
-    role: "Backend Developer",
-    description: "Specialist în baze de date și arhitectura sistemelor scalabile.",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    email: "andrei@olimpix.ro"
-  },
-  {
-    name: "Elena Marinescu",
-    role: "Content Creator",
-    description: "Profesoară de informatică cu experiență în pregătirea olimpiadelor.",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    email: "elena@olimpix.ro"
+    image: "public/creator2.jpg"
   }
 ];
 
@@ -50,14 +34,22 @@ const Creators = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {creators.map((creator, index) => (
             <div
               key={index}
               className="bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg transition-shadow"
             >
-              <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                <User className="w-12 h-12 text-primary" />
+              <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
+                {creator.image ? (
+                  <img 
+                    src={creator.image} 
+                    alt={creator.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <User className="w-12 h-12 text-primary" />
+                )}
               </div>
               <h3 className="text-xl font-semibold mb-1">{creator.name}</h3>
               <p className="text-primary font-medium mb-3">{creator.role}</p>
@@ -81,12 +73,6 @@ const Creators = () => {
                 >
                   <Linkedin className="w-5 h-5" />
                 </a>
-                <a
-                  href={`mailto:${creator.email}`}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <Mail className="w-5 h-5" />
-                </a>
               </div>
             </div>
           ))}
@@ -95,17 +81,17 @@ const Creators = () => {
         <div className="mt-16 bg-muted/50 rounded-2xl p-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Vrei să contribui?</h2>
           <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-            Platforma noastră este open source! Dacă ești pasionat de programming 
+            Platforma noastră este open source! Dacă ești pasionat de programare 
             și vrei să ajuți la dezvoltarea olimpiX, te așteptăm în echipa noastră.
           </p>
           <a
-            href="https://github.com/olimpix"
+            href="https://github.com/iam269/olimpix"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
           >
             <Github className="w-5 h-5" />
-            Contribute on GitHub
+            Contribuie pe GitHub
           </a>
         </div>
       </div>
