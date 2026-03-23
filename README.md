@@ -11,6 +11,12 @@
 
 OlimpiX is a modern educational platform designed to help students learn various subjects through interactive lessons, quizzes, and progress tracking. Built with React, TypeScript, and Supabase.
 
+## 🚀 Live Demo
+
+Check out the live demo: **[olimpix.vercel.app](https://olimpix.vercel.app/)**
+
+![OlimpiX Screenshot](public/image.png)
+
 ## ✨ Features
 
 - **User Authentication** - Secure sign up and login with Supabase auth
