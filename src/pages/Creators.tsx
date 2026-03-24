@@ -1,5 +1,5 @@
 import Layout from "@/components/layout/Layout";
-import { Github, Linkedin, User } from "lucide-react";
+import { Github, Linkedin, User, Globe } from "lucide-react";
 
 const creators = [
   {
@@ -8,6 +8,7 @@ const creators = [
     description: "Pasionat de algoritmi și dezvoltare web. Am creat platforma de la zero si cursul de infromatică pentru olimpiade.",
     github: "https://github.com/iam269",
     linkedin: "https://www.linkedin.com/in/ionita-aurel-mihai-20648536a/",
+    website: "https://ionitaaurelmihai.vercel.app/",
     image: "/creator.jpg",
   },
   {
@@ -57,6 +58,16 @@ const Creators = () => {
                 {creator.description}
               </p>
               <div className="flex justify-center gap-3">
+                {creator.website && (
+                  <a
+                    href={creator.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <Globe className="w-5 h-5" />
+                  </a>
+                )}
                 <a
                   href={creator.github}
                   target="_blank"
